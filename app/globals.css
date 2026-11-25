@@ -155,12 +155,23 @@ a:focus-visible, button:focus-visible {
 .menu-toggle:hover { background: var(--color-mist); }
 
 .hero {
-  background: linear-gradient(115deg, var(--color-navy) 0%, #102d61 100%);
+  --hero-background: linear-gradient(115deg, var(--color-navy) 0%, #102d61 100%);
+  position: relative;
+  overflow: clip;
+  background: var(--hero-background);
   color: white;
   padding-block: clamp(54px, 6vw, 86px);
 }
 
+.hero-parallax-background {
+  position: absolute;
+  inset: -26px 0 0;
+  pointer-events: none;
+  background: var(--hero-background);
+}
+
 .hero-grid {
+  position: relative;
   display: grid;
   align-items: center;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
@@ -251,7 +262,16 @@ a:focus-visible, button:focus-visible {
   letter-spacing: .11em;
   text-transform: uppercase;
 }
-.product-photo .photo-image { aspect-ratio: 1.82; }
+.product-photo .photo-image {
+  aspect-ratio: 1.82;
+  overflow: hidden;
+}
+
+.product-parallax-plane {
+  position: absolute;
+  inset: -24px 0;
+}
+
 .product-card:first-child img { object-fit: contain; background: #fafaf8; }
 .customer-photo .photo-image { aspect-ratio: 1.55; }
 
@@ -284,6 +304,7 @@ a:focus-visible, button:focus-visible {
 .tile-body > p:last-child, .service-card > p:last-child { color: var(--muted); font-size: .92rem; }
 
 .about { border-bottom: 1px solid #e5e9ef; }
+.about-parallax-copy .eyebrow::before { transform: translateY(var(--about-accent-y, 0px)); }
 .about .section-heading, .partnership .section-heading { margin-bottom: 0; }
 .service-card { padding: clamp(20px, 2.4vw, 30px); }
 .icon-box {
@@ -370,6 +391,8 @@ a:focus-visible, button:focus-visible {
   .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
   .hero h1 { font-size: clamp(2.15rem, 8.4vw, 3.6rem); }
   .hero-photo .photo-image { aspect-ratio: 1.65; }
+  .hero-parallax-background { inset-block-start: -10px; }
+  .product-parallax-plane { inset-block: -9px; }
   .partnership-inner { flex-direction: column; align-items: flex-start; }
 }
 
@@ -392,8 +415,6 @@ a:focus-visible, button:focus-visible {
 }
 
 .site-header[data-scrolled]::after { opacity: 1; }
-
-.product-photo .photo-image { overflow: hidden; }
 
 @keyframes rdw-enter {
   from { opacity: .76; translate: 0 14px; }
@@ -493,4 +514,8 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .action-link { transition: none; }
+  .hero-parallax-background { display: none; }
+  .hero-parallax-foreground, .product-parallax-plane, .about-parallax-copy,
+  .about-parallax-copy .eyebrow::before { transform: none !important; }
+  .product-parallax-plane { inset-block: 0; }
 }

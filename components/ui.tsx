@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { ProductParallax } from "./scroll-parallax";
 
 export function SectionHeading({ label, title, description, id }: {
   label: string;
@@ -39,26 +40,29 @@ export function ActionLink({ href, children, label, variant = "gold", external =
   );
 }
 
-export function Photo({ src, alt, sizes, className, caption = "Foto ilustrasi", priority = false }: {
+export function Photo({ src, alt, sizes, className, caption = "Foto ilustrasi", priority = false, parallax = false }: {
   src: string;
   alt: string;
   sizes: string;
   className: string;
   caption?: string;
   priority?: boolean;
+  parallax?: boolean;
 }) {
+  const image = (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      sizes={sizes}
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : undefined}
+    />
+  );
+
   return (
     <figure className={`photo ${className}`}>
-      <div className="photo-image">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes={sizes}
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : undefined}
-        />
-      </div>
+      {parallax ? <ProductParallax>{image}</ProductParallax> : <div className="photo-image">{image}</div>}
       <figcaption>{caption}</figcaption>
     </figure>
   );

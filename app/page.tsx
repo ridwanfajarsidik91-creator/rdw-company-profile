@@ -1,6 +1,7 @@
 import { Handshake, Mail, MapPin, MessageCircle, Package, Truck } from "lucide-react";
 import { Header } from "../components/header";
 import { PageMotion } from "../components/page-motion";
+import { AboutParallax, HeroParallax } from "../components/scroll-parallax";
 import { ActionLink, Photo, SectionHeading } from "../components/ui";
 import { customers, products, site } from "./site";
 
@@ -37,16 +38,8 @@ export default function HomePage() {
       <Header />
       <PageMotion />
       <main id="isi" tabIndex={-1}>
-        <section id="home" className="hero" aria-labelledby="hero-title">
-          <div className="container-shell hero-grid">
-            <div className="hero-copy">
-              <p className="eyebrow"><span>Supplier &amp; Distributor <span aria-hidden>·</span> Bandung Barat</span></p>
-              <h1 id="hero-title">Mitra Pasokan Ayam.<br /><span>Solusi Distribusi.</span></h1>
-              <p className="hero-description">
-                RDW menyediakan ayam hidup dan ayam gebrus untuk kebutuhan pasar tradisional, rumah potong ayam, serta industri pengolahan ayam.
-              </p>
-              <ActionLink href="#kontak">Hubungi tim sales</ActionLink>
-            </div>
+        <HeroParallax
+          photo={
             <Photo
               className="hero-photo"
               src={products[0].photo}
@@ -55,8 +48,17 @@ export default function HomePage() {
               sizes="(max-width: 760px) 90vw, (max-width: 1333px) 42vw, 550px"
               priority
             />
+          }
+        >
+          <div className="hero-copy">
+            <p className="eyebrow"><span>Supplier &amp; Distributor <span aria-hidden>·</span> Bandung Barat</span></p>
+            <h1 id="hero-title">Mitra Pasokan Ayam.<br /><span>Solusi Distribusi.</span></h1>
+            <p className="hero-description">
+              RDW menyediakan ayam hidup dan ayam gebrus untuk kebutuhan pasar tradisional, rumah potong ayam, serta industri pengolahan ayam.
+            </p>
+            <ActionLink href="#kontak">Hubungi tim sales</ActionLink>
           </div>
-        </section>
+        </HeroParallax>
 
         <section id="produk" className="section-space" aria-labelledby="produk-title">
           <div className="container-shell">
@@ -69,6 +71,7 @@ export default function HomePage() {
                     src={product.photo}
                     alt={product.alt}
                     sizes="(max-width: 760px) 90vw, (max-width: 1333px) 45vw, 588px"
+                    parallax
                   />
                   <div className="product-body">
                     <h3>{product.name}</h3>
@@ -111,14 +114,14 @@ export default function HomePage() {
         </section>
 
         <section id="tentang" className="section-space about" aria-labelledby="tentang-title">
-          <div className="container-shell" data-reveal>
+          <AboutParallax>
             <SectionHeading
               id="tentang-title"
               label="Tentang kami"
               title="Mitra pasokan untuk bisnis Anda."
               description="RDW bergerak di bidang pengadaan dan distribusi ayam hidup serta ayam gebrus untuk pasar tradisional, rumah potong ayam, industri pengolahan, dan pedagang besar. Kami berfokus pada koordinasi pasokan sesuai kebutuhan dan kesepakatan mitra bisnis."
             />
-          </div>
+          </AboutParallax>
         </section>
 
         <section id="layanan" className="section-space bg-mist" aria-labelledby="layanan-title">
