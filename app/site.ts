@@ -1,10 +1,9 @@
 export const site = {
-  domain: "www.rdw.com",
+  domain: "www.rdw.company",
   title: "RDW | Supplier Ayam Hidup & Ayam Gebrus — Bandung Barat",
   description:
     "RDW menyediakan ayam hidup dan ayam gebrus untuk pasar tradisional, rumah potong ayam, industri pengolahan, dan distributor.",
-  email: "info@rdw.com",
-  sales: "sales@rdw.com",
+  email: "info@rdw.company",
   maps: "https://maps.google.com/maps/place//data=!4m2!3m1!1s0x2e68e22c57d946ab:0x2df6a5c71ba71985",
 };
 
@@ -15,10 +14,6 @@ export const navigation = [
   ["#mitra", "Kemitraan"],
   ["#kontak", "Kontak"],
 ] as const;
-
-export function salesLink(subject = "Permintaan Penawaran RDW") {
-  return `mailto:${site.sales}?subject=${encodeURIComponent(subject)}`;
-}
 
 export const products = [
   {

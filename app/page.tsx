@@ -1,7 +1,8 @@
-import { Globe2, Handshake, Mail, MapPin, Package, Send, Truck } from "lucide-react";
+import { Handshake, Mail, MapPin, MessageCircle, Package, Truck } from "lucide-react";
 import { Header } from "../components/header";
+import { PageMotion } from "../components/page-motion";
 import { ActionLink, Photo, SectionHeading } from "../components/ui";
-import { customers, products, salesLink, site } from "./site";
+import { customers, products, site } from "./site";
 
 const services = [
   {
@@ -25,9 +26,8 @@ const services = [
 ];
 
 const contacts = [
-  { label: "Domain", text: site.domain, icon: Globe2 },
   { label: "General Inquiries", text: site.email, href: `mailto:${site.email}`, icon: Mail },
-  { label: "Sales & Business Inquiries", text: site.sales, href: salesLink(), icon: Send },
+  { label: "Sales & Business", text: "WhatsApp Sales", icon: MessageCircle },
 ];
 
 export default function HomePage() {
@@ -35,16 +35,17 @@ export default function HomePage() {
     <>
       <a href="#isi" className="skip-link">Lewati ke konten</a>
       <Header />
+      <PageMotion />
       <main id="isi" tabIndex={-1}>
         <section id="home" className="hero" aria-labelledby="hero-title">
           <div className="container-shell hero-grid">
-            <div>
+            <div className="hero-copy">
               <p className="eyebrow"><span>Supplier &amp; Distributor <span aria-hidden>·</span> Bandung Barat</span></p>
               <h1 id="hero-title">Mitra Pasokan Ayam.<br /><span>Solusi Distribusi.</span></h1>
               <p className="hero-description">
                 RDW menyediakan ayam hidup dan ayam gebrus untuk kebutuhan pasar tradisional, rumah potong ayam, serta industri pengolahan ayam.
               </p>
-              <ActionLink href={salesLink()}>Hubungi tim sales</ActionLink>
+              <ActionLink href="#kontak">Hubungi tim sales</ActionLink>
             </div>
             <Photo
               className="hero-photo"
@@ -62,7 +63,7 @@ export default function HomePage() {
             <SectionHeading id="produk-title" label="Our Products" title="Produk unggulan RDW." description="Pasokan ayam untuk kebutuhan perdagangan dan produksi." />
             <div className="grid gap-6 min-[761px]:grid-cols-2">
               {products.map((product) => (
-                <article className="tile product-card" key={product.name}>
+                <article className="tile product-card" data-reveal key={product.name}>
                   <Photo
                     className="product-photo"
                     src={product.photo}
@@ -73,7 +74,7 @@ export default function HomePage() {
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <ActionLink
-                      href={salesLink(`Permintaan Penawaran ${product.name}`)}
+                      href="#kontak"
                       label={`Minta penawaran ${product.name}`}
                       variant="navy"
                     >
@@ -110,7 +111,7 @@ export default function HomePage() {
         </section>
 
         <section id="tentang" className="section-space about" aria-labelledby="tentang-title">
-          <div className="container-shell">
+          <div className="container-shell" data-reveal>
             <SectionHeading
               id="tentang-title"
               label="Tentang kami"
@@ -137,7 +138,7 @@ export default function HomePage() {
         </section>
 
         <section id="mitra" className="section-space partnership" aria-labelledby="mitra-title">
-          <div className="container-shell partnership-inner">
+          <div className="container-shell partnership-inner" data-reveal>
             <SectionHeading
               id="mitra-title"
               label="Kemitraan"
@@ -149,7 +150,7 @@ export default function HomePage() {
         </section>
 
         <section id="kontak" className="section-space contact" aria-labelledby="kontak-title">
-          <div className="container-shell">
+          <div className="container-shell contact-inner" data-reveal>
             <SectionHeading id="kontak-title" label="Kontak" title="Mari mulai percakapan." />
             <address className="contact-address">
               <MapPin size={22} aria-hidden />
@@ -160,7 +161,7 @@ export default function HomePage() {
                 Jawa Barat 40551, Indonesia
               </div>
             </address>
-            <div className="contact-grid grid gap-4 min-[761px]:grid-cols-3">
+            <div className="contact-grid grid gap-4 min-[761px]:grid-cols-2">
               {contacts.map(({ label, text, href, icon: Icon }) => (
                 <div className="contact-card" key={label}>
                   <Icon className="contact-icon" size={21} strokeWidth={1.7} aria-hidden />
@@ -176,7 +177,7 @@ export default function HomePage() {
         </section>
       </main>
       <footer className="site-footer">
-        <div className="container-shell footer-inner">
+        <div className="container-shell footer-inner" data-reveal>
           <p>© 2026 RDW — Supplier &amp; Distributor.</p>
           <p>{site.domain}</p>
         </div>

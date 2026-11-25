@@ -15,7 +15,7 @@ Buka [localhost:3000](http://localhost:3000). Untuk validasi, jalankan `npm run 
 
 ## Deployment
 
-Impor repositori ke Vercel dengan preset Next.js. Metadata dan sitemap memakai `VERCEL_PROJECT_PRODUCTION_URL` jika tersedia. Atur `SITE_URL` ke URL HTTPS resmi setelah domain RDW terkonfirmasi. Domain yang dicantumkan di referensi ditampilkan sebagai teks karena saat peninjauan host tersebut mengarah ke perusahaan lain. Alamat email mengikuti brief.
+Impor repositori ke Vercel dengan preset Next.js. Metadata dan sitemap memakai `SITE_URL` jika diatur. Di Vercel Production, domain default-nya adalah `www.rdw.company`.
 
 ## Aset gambar
 
