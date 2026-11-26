@@ -1,7 +1,11 @@
-import { Handshake, Mail, MapPin, MessageCircle, Package, Truck } from "lucide-react";
+import { Handshake, Mail, MapPin, Package, Truck } from "lucide-react";
+import { BusinessAdvantages } from "../components/business-advantages";
 import { Header } from "../components/header";
+import { CompanyMetrics, CompanyOperations } from "../components/operational-sections";
+import { OrganizationSchema } from "../components/organization-schema";
 import { PageMotion } from "../components/page-motion";
 import { AboutParallax, HeroParallax } from "../components/scroll-parallax";
+import { SupplyChain } from "../components/supply-chain";
 import { ActionLink, Photo, SectionHeading } from "../components/ui";
 import { customers, products, site } from "./site";
 
@@ -26,17 +30,14 @@ const services = [
   },
 ];
 
-const contacts = [
-  { label: "General Inquiries", text: site.email, href: `mailto:${site.email}`, icon: Mail },
-  { label: "Sales & Business", text: "WhatsApp Sales", icon: MessageCircle },
-];
-
 export default function HomePage() {
+  const { address } = site;
+
   return (
     <>
+      <OrganizationSchema />
       <a href="#isi" className="skip-link">Lewati ke konten</a>
       <Header />
-      <PageMotion />
       <main id="isi" tabIndex={-1}>
         <HeroParallax
           photo={
@@ -95,7 +96,7 @@ export default function HomePage() {
             <SectionHeading id="pelanggan-title" label="Our Customers" title="Melayani berbagai sektor usaha." description="RDW berfokus pada kebutuhan pasokan ayam untuk pelanggan bisnis (B2B)." />
             <div className="grid gap-5 min-[541px]:grid-cols-2 min-[1001px]:grid-cols-4">
               {customers.map((customer) => (
-                <article className="tile customer-card" key={customer.name}>
+                <article className="tile customer-card" data-reveal key={customer.name}>
                   <Photo
                     className="customer-photo"
                     src={customer.photo}
@@ -113,6 +114,8 @@ export default function HomePage() {
           </div>
         </section>
 
+        <SupplyChain />
+
         <section id="tentang" className="section-space about" aria-labelledby="tentang-title">
           <AboutParallax>
             <SectionHeading
@@ -123,6 +126,8 @@ export default function HomePage() {
             />
           </AboutParallax>
         </section>
+
+        <CompanyMetrics />
 
         <section id="layanan" className="section-space bg-mist" aria-labelledby="layanan-title">
           <div className="container-shell">
@@ -139,6 +144,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <BusinessAdvantages />
+        <CompanyOperations />
 
         <section id="mitra" className="section-space partnership" aria-labelledby="mitra-title">
           <div className="container-shell partnership-inner" data-reveal>
@@ -158,22 +166,20 @@ export default function HomePage() {
             <address className="contact-address">
               <MapPin size={22} aria-hidden />
               <div>
-                <strong>RDW — Supplier &amp; Distributor</strong><br />
-                Jl. Cipeusing, RT.04/RW.04, Kertawangi,<br />
-                Kec. Cisarua, Kabupaten Bandung Barat,<br />
-                Jawa Barat 40551, Indonesia
+                <strong>{site.name}</strong><br />
+                {address.streetAddress},<br />
+                {address.district}, {address.addressLocality},<br />
+                {address.addressRegion} {address.postalCode}, Indonesia
               </div>
             </address>
-            <div className="contact-grid grid gap-4 min-[761px]:grid-cols-2">
-              {contacts.map(({ label, text, href, icon: Icon }) => (
-                <div className="contact-card" key={label}>
-                  <Icon className="contact-icon" size={21} strokeWidth={1.7} aria-hidden />
-                  <div>
-                    <p lang="en">{label}</p>
-                    {href ? <a href={href}>{text}</a> : <strong>{text}</strong>}
-                  </div>
+            <div className="contact-grid">
+              <div className="contact-card">
+                <Mail className="contact-icon" size={21} strokeWidth={1.7} aria-hidden />
+                <div>
+                  <p>Email resmi</p>
+                  <a href={`mailto:${site.email}`}>{site.email}</a>
                 </div>
-              ))}
+              </div>
             </div>
             <ActionLink href={site.maps} external>Petunjuk Arah — Google Maps</ActionLink>
           </div>
@@ -182,9 +188,10 @@ export default function HomePage() {
       <footer className="site-footer">
         <div className="container-shell footer-inner" data-reveal>
           <p>© 2026 RDW — Supplier &amp; Distributor.</p>
-          <p>{site.domain}</p>
+          <a href={site.url}>{site.domain}</a>
         </div>
       </footer>
+      <PageMotion />
     </>
   );
 }

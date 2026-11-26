@@ -1,9 +1,20 @@
 export const site = {
   domain: "www.rdw.company",
-  title: "RDW | Supplier Ayam Hidup & Ayam Gebrus — Bandung Barat",
+  url: "https://www.rdw.company/",
+  name: "RDW — Supplier & Distributor",
+  logo: "/images/logo-rdw.webp",
+  title: "RDW | Supplier Ayam Hidup & Ayam Gebrus di Bandung Barat",
   description:
-    "RDW menyediakan ayam hidup dan ayam gebrus untuk pasar tradisional, rumah potong ayam, industri pengolahan, dan distributor.",
+    "RDW memasok dan mendistribusikan ayam hidup serta ayam gebrus dari Bandung Barat untuk pasar tradisional, rumah potong ayam, dan industri pengolahan.",
   email: "info@rdw.company",
+  address: {
+    streetAddress: "Jl. Cipeusing, RT.04/RW.04, Kertawangi",
+    district: "Kec. Cisarua",
+    addressLocality: "Kabupaten Bandung Barat",
+    addressRegion: "Jawa Barat",
+    postalCode: "40551",
+    addressCountry: "ID",
+  },
   maps: "https://maps.google.com/maps/place//data=!4m2!3m1!1s0x2e68e22c57d946ab:0x2df6a5c71ba71985",
 };
 

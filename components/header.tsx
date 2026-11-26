@@ -3,7 +3,7 @@
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { navigation } from "../app/site";
+import { navigation, site } from "../app/site";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +21,7 @@ export function Header() {
     >
       <div className="container-shell header-inner">
         <a href="#home" className="brand" aria-label="RDW — Supplier & Distributor, beranda" onClick={() => setIsOpen(false)}>
-          <Image src="/images/logo-rdw.webp" alt="" width={108} height={48} loading="eager" unoptimized />
+          <Image src={site.logo} alt="" width={108} height={48} loading="eager" unoptimized />
           <span>Supplier &amp;<br />Distributor</span>
         </a>
         <button
