@@ -201,7 +201,7 @@ a:focus-visible, button:focus-visible {
   background: var(--color-gold);
 }
 
-.hero .eyebrow, .contact .eyebrow { color: var(--light-gold); }
+.hero .eyebrow { color: var(--light-gold); }
 
 .hero h1 {
   color: white;
@@ -321,41 +321,6 @@ a:focus-visible, button:focus-visible {
 .partnership { background: #f7f2e6; }
 .partnership-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .partnership .action-link { flex-shrink: 0; }
-.contact { background: var(--color-navy); color: #d5dfef; }
-.contact h2 { color: white; }
-.contact .section-heading { margin-bottom: 24px; }
-.contact-address { display: flex; align-items: flex-start; gap: 12px; font-style: normal; }
-.contact-address svg { flex: none; margin-top: 2px; color: var(--light-gold); }
-.contact-address strong { color: white; }
-.contact-grid { margin-block: 28px 23px; }
-.contact-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 11px;
-  padding: clamp(14px, 1.9vw, 22px);
-  border: 1px solid #ffffff36;
-  border-radius: 8px;
-  background: #ffffff09;
-}
-.contact-icon { color: var(--light-gold); flex: none; margin-top: 2px; }
-.contact-card p {
-  margin-bottom: 5px;
-  font-size: .68rem;
-  font-weight: 730;
-  letter-spacing: .075em;
-  color: var(--light-gold);
-  text-transform: uppercase;
-}
-.contact-card a, .contact-card strong {
-  font-size: 1.1rem;
-  font-weight: 650;
-  color: white;
-  overflow-wrap: anywhere;
-  text-underline-offset: 4px;
-}
-.contact-card a:hover { color: var(--light-gold); text-decoration: underline; }
-.site-footer { background: #061333; color: #b9c7e3; font-size: .84rem; }
-.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 5px 20px; padding-block: 22px; }
 
 @media (max-width: 760px) {
   .header-inner {
@@ -442,33 +407,27 @@ a:focus-visible, button:focus-visible {
   .hero-photo,
   .product-card[data-revealed],
   [data-revealed] > .section-heading > *,
-  .partnership-inner[data-revealed] > .action-link,
-  .contact-inner[data-revealed] > :not(.section-heading),
-  .footer-inner[data-revealed] > * {
+  .partnership-inner[data-revealed] > .action-link {
     animation: rdw-enter var(--rdw-motion-enter) var(--rdw-motion-ease) var(--reveal-delay, 0ms) backwards;
   }
 
   .hero-copy > :nth-child(2),
   .hero-photo,
   .product-card:nth-child(2),
-  [data-revealed] > .section-heading > :nth-child(2),
-  .footer-inner > :nth-child(2) {
+  [data-revealed] > .section-heading > :nth-child(2) {
     --reveal-delay: var(--rdw-motion-step);
   }
 
   .hero-copy > :nth-child(3),
-  [data-revealed] > .section-heading > :nth-child(3),
-  .contact-inner > .contact-address {
+  [data-revealed] > .section-heading > :nth-child(3) {
     --reveal-delay: calc(2 * var(--rdw-motion-step));
   }
 
   .hero-copy > :nth-child(4),
-  .partnership-inner > .action-link,
-  .contact-inner > .contact-grid {
+  .partnership-inner > .action-link {
     --reveal-delay: calc(3 * var(--rdw-motion-step));
   }
 
-  .contact-inner > .action-link { --reveal-delay: calc(4 * var(--rdw-motion-step)); }
   .hero-photo { animation-name: rdw-photo-enter; }
 
   .site-header::after { transition: opacity 240ms var(--rdw-motion-ease); }
@@ -491,7 +450,6 @@ a:focus-visible, button:focus-visible {
   .navigation .navigation-contact:active,
   .menu-toggle:active { scale: .97; }
 
-  .contact-card a { transition: color 220ms var(--rdw-motion-ease); }
   .action-link {
     transition: background-color 240ms var(--rdw-motion-ease);
   }
@@ -499,7 +457,6 @@ a:focus-visible, button:focus-visible {
   .action-link svg { transition: translate 240ms var(--rdw-motion-ease); }
 
   .action-link:is(:hover, :focus-visible) svg { translate: 3px 0; }
-  .contact .action-link:is(:hover, :focus-visible) svg { translate: 3px -2px; }
 
   @media (max-width: 760px) {
     .navigation[data-open="true"] { animation: rdw-menu-enter 240ms var(--rdw-motion-ease); }

@@ -112,11 +112,6 @@
 .operations-photo img { width: 100%; height: auto; display: block; }
 .operations-photo figcaption { padding: 11px 14px; font-size: .83rem; }
 
-.contact-grid { width: min(100%, 520px); }
-.site-footer .footer-inner { padding-inline-end: max(0px, calc(65px - 5vw)); }
-.site-footer a { text-decoration-thickness: 1px; text-underline-offset: 4px; }
-.site-footer a:is(:hover, :focus-visible) { color: white; text-decoration: underline; }
-
 .scroll-progress {
   position: fixed;
   inset: 0 0 auto;

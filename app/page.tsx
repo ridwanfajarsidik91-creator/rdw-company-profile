@@ -1,5 +1,6 @@
-import { Handshake, Mail, MapPin, Package, Truck } from "lucide-react";
+import { Handshake, Package, Truck } from "lucide-react";
 import { BusinessAdvantages } from "../components/business-advantages";
+import { CorporateFooter } from "../components/corporate-footer";
 import { Header } from "../components/header";
 import { CompanyMetrics, CompanyOperations } from "../components/operational-sections";
 import { OrganizationSchema } from "../components/organization-schema";
@@ -7,7 +8,7 @@ import { PageMotion } from "../components/page-motion";
 import { AboutParallax, HeroParallax } from "../components/scroll-parallax";
 import { SupplyChain } from "../components/supply-chain";
 import { ActionLink, Photo, SectionHeading } from "../components/ui";
-import { customers, products, site } from "./site";
+import { customers, products } from "./site";
 
 const services = [
   {
@@ -31,8 +32,6 @@ const services = [
 ];
 
 export default function HomePage() {
-  const { address } = site;
-
   return (
     <>
       <OrganizationSchema />
@@ -159,38 +158,8 @@ export default function HomePage() {
             <ActionLink href="#kontak" variant="navy">Informasi kontak</ActionLink>
           </div>
         </section>
-
-        <section id="kontak" className="section-space contact" aria-labelledby="kontak-title">
-          <div className="container-shell contact-inner" data-reveal>
-            <SectionHeading id="kontak-title" label="Kontak" title="Mari mulai percakapan." />
-            <address className="contact-address">
-              <MapPin size={22} aria-hidden />
-              <div>
-                <strong>{site.name}</strong><br />
-                {address.streetAddress},<br />
-                {address.district}, {address.addressLocality},<br />
-                {address.addressRegion} {address.postalCode}, Indonesia
-              </div>
-            </address>
-            <div className="contact-grid">
-              <div className="contact-card">
-                <Mail className="contact-icon" size={21} strokeWidth={1.7} aria-hidden />
-                <div>
-                  <p>Email resmi</p>
-                  <a href={`mailto:${site.email}`}>{site.email}</a>
-                </div>
-              </div>
-            </div>
-            <ActionLink href={site.maps} external>Petunjuk Arah — Google Maps</ActionLink>
-          </div>
-        </section>
       </main>
-      <footer className="site-footer">
-        <div className="container-shell footer-inner" data-reveal>
-          <p>© 2026 RDW — Supplier &amp; Distributor.</p>
-          <a href={site.url}>{site.domain}</a>
-        </div>
-      </footer>
+      <CorporateFooter />
       <PageMotion />
     </>
   );
