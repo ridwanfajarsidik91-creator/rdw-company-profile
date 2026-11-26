@@ -14,16 +14,16 @@ function subscribeToMotionPreferences(onChange: () => void) {
 
 function getIntensity() {
   if (window.matchMedia(reducedMotionQuery).matches) return 0;
-  return window.matchMedia(mobileQuery).matches ? 0.36 : 1;
+  return window.matchMedia(mobileQuery).matches ? 0.5 : 1;
 }
 
 function useParallax(target: RefObject<HTMLElement | null>, offset: UseScrollOptions["offset"]) {
   const intensity = useSyncExternalStore(subscribeToMotionPreferences, getIntensity, () => 0);
   const { scrollYProgress } = useScroll({ target, offset });
   const progress = useSpring(scrollYProgress, {
-    stiffness: 240,
-    damping: 28,
-    mass: 0.55,
+    stiffness: 280,
+    damping: 24,
+    mass: 0.46,
     restDelta: 0.001,
     skipInitialAnimation: true,
   });
@@ -33,8 +33,11 @@ function useParallax(target: RefObject<HTMLElement | null>, offset: UseScrollOpt
 export function HeroParallax({ children, photo }: { children: ReactNode; photo: ReactNode }) {
   const target = useRef<HTMLElement>(null);
   const { progress, intensity } = useParallax(target, ["start 79px", "end 79px"]);
-  const foregroundY = useTransform(progress, [0, 0.88], [0, -84 * intensity]);
-  const backgroundY = useTransform(progress, [0, 0.88], [0, 24 * intensity]);
+  // On mobile the photo starts below the CTA. Keep the early movement within their gap.
+  const foregroundY = useTransform(progress, [0, 0.28, 0.62, 1], intensity === 0.5
+    ? [0, -20, -25, -42]
+    : [0, -37.8 * intensity, -65 * intensity, -84 * intensity]);
+  const backgroundY = useTransform(progress, [0, 1], [0, 24 * intensity]);
 
   return (
     <section ref={target} id="home" className="hero" aria-labelledby="hero-title">
