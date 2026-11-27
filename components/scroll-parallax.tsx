@@ -80,7 +80,7 @@ export function AboutParallax({ children }: { children: ReactNode }) {
 
   return (
     <div ref={target} className="container-shell">
-      <motion.div className="about-parallax-copy" data-reveal style={style}>
+      <motion.div className="about-parallax-copy" style={style}>
         {children}
       </motion.div>
     </div>

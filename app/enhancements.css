@@ -143,6 +143,11 @@
 .back-to-top:is([data-visible], :focus-visible) { visibility: visible; opacity: 1; }
 .back-to-top:hover { border-color: var(--color-gold); }
 
+@keyframes rdw-section-enter {
+  from { opacity: .72; translate: 0 var(--section-reveal-distance, 28px); }
+  to { opacity: 1; translate: 0 0; }
+}
+
 @keyframes rdw-image-reveal {
   from { clip-path: inset(0 0 11%); opacity: .68; }
   to { clip-path: inset(0); opacity: 1; }
@@ -158,14 +163,35 @@
     animation: rdw-image-reveal 670ms var(--rdw-motion-ease) var(--reveal-delay, 0ms) backwards;
   }
 
-  .advantages-layout[data-revealed] .advantages-list > li {
-    animation: rdw-enter var(--rdw-motion-enter) var(--rdw-motion-ease) backwards;
+  :root { --section-reveal-step: 120ms; }
+
+  .section-heading[data-revealed] > *,
+  :is(.product-card, .customer-card, .service-card)[data-revealed],
+  .chain-diagram li[data-revealed] > .chain-node,
+  .advantages-list li[data-revealed],
+  .partnership-inner[data-revealed] > .action-link {
+    animation: rdw-section-enter 720ms var(--rdw-motion-ease) var(--reveal-delay, 0ms) backwards;
   }
 
-  .advantages-layout[data-revealed] li:nth-child(2) { animation-delay: calc(1 * var(--rdw-motion-step)); }
-  .advantages-layout[data-revealed] li:nth-child(3) { animation-delay: calc(2 * var(--rdw-motion-step)); }
-  .advantages-layout[data-revealed] li:nth-child(4) { animation-delay: calc(3 * var(--rdw-motion-step)); }
-  .advantages-layout[data-revealed] li:nth-child(5) { animation-delay: calc(4 * var(--rdw-motion-step)); }
+  .section-heading[data-revealed] > :nth-child(2),
+  :is(.product-card, .customer-card, .service-card):nth-child(2),
+  .chain-diagram > li:nth-child(2),
+  .advantages-list li:nth-child(2) { --reveal-delay: var(--section-reveal-step); }
+
+  .section-heading[data-revealed] > :nth-child(3),
+  :is(.customer-card, .service-card):nth-child(3),
+  .chain-destinations li,
+  .advantages-list li:nth-child(3) { --reveal-delay: calc(2 * var(--section-reveal-step)); }
+
+  .customer-card:nth-child(4),
+  .chain-destinations li:nth-child(2),
+  .advantages-list li:nth-child(4),
+  .partnership-inner > .action-link { --reveal-delay: calc(3 * var(--section-reveal-step)); }
+
+  .chain-destinations li:nth-child(3),
+  .advantages-list li:nth-child(5) { --reveal-delay: calc(4 * var(--section-reveal-step)); }
+
+  .about .section-heading[data-revealed] > * { --section-reveal-distance: 32px; }
 }
 
 @media (max-width: 760px) {

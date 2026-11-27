@@ -18,7 +18,7 @@ export function CorporateFooter() {
   return (
     <footer id="kontak" className="corporate-footer" aria-labelledby="kontak-title">
       <div className="container-shell">
-        <div className="footer-heading" data-reveal>
+        <div className="footer-heading">
           <SectionHeading id="kontak-title" label="Kontak" title="Mari mulai percakapan." />
         </div>
 
@@ -61,7 +61,7 @@ export function CorporateFooter() {
           </div>
         </div>
 
-        <div className="footer-bottom">
+        <div className="footer-bottom" data-reveal>
           <p>© 2026 RDW — Supplier &amp; Distributor.</p>
           <p lang="en">All Rights Reserved.</p>
         </div>

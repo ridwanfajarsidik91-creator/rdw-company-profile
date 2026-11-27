@@ -402,27 +402,12 @@ a:focus-visible, button:focus-visible {
     --rdw-motion-step: 85ms;
   }
 
-  .hero-copy > *,
-  .product-card[data-revealed],
-  [data-revealed] > .section-heading > *,
-  .partnership-inner[data-revealed] > .action-link {
+  .hero-copy > * {
     animation: rdw-enter var(--rdw-motion-enter) var(--rdw-motion-ease) var(--reveal-delay, 0ms) backwards;
   }
 
-  .hero-copy > :nth-child(2),
-  .product-card:nth-child(2),
-  [data-revealed] > .section-heading > :nth-child(2) {
-    --reveal-delay: var(--rdw-motion-step);
-  }
-
-  .hero-copy > :nth-child(3),
-  [data-revealed] > .section-heading > :nth-child(3) {
-    --reveal-delay: calc(2 * var(--rdw-motion-step));
-  }
-
-  .partnership-inner > .action-link {
-    --reveal-delay: calc(3 * var(--rdw-motion-step));
-  }
+  .hero-copy > :nth-child(2) { --reveal-delay: var(--rdw-motion-step); }
+  .hero-copy > :nth-child(3) { --reveal-delay: calc(2 * var(--rdw-motion-step)); }
 
   .site-header::after { transition: opacity 240ms var(--rdw-motion-ease); }
 

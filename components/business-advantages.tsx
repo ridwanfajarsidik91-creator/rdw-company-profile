@@ -12,11 +12,11 @@ const advantages = [
 export function BusinessAdvantages() {
   return (
     <section id="keunggulan" className="section-space" aria-labelledby="keunggulan-title">
-      <div className="container-shell advantages-layout" data-reveal>
+      <div className="container-shell advantages-layout">
         <SectionHeading id="keunggulan-title" label="Keunggulan RDW" title="Pasokan yang direncanakan bersama." />
         <ul className="advantages-list" role="list">
           {advantages.map(({ title, description, icon: Icon }) => (
-            <li key={title}>
+            <li key={title} data-reveal>
               <div className="icon-box"><Icon size={21} strokeWidth={1.65} aria-hidden="true" /></div>
               <div>
                 <h3>{title}</h3>

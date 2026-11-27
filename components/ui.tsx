@@ -9,7 +9,7 @@ export function SectionHeading({ label, title, description, id }: {
   id: string;
 }) {
   return (
-    <div className="section-heading">
+    <div className="section-heading" data-reveal>
       <p className="eyebrow">{label}</p>
       <h2 id={id}>{title}</h2>
       {description && <p className="section-description">{description}</p>}

@@ -119,7 +119,7 @@ export default function HomePage() {
             <SectionHeading id="layanan-title" label="Layanan" title="Dukungan untuk kebutuhan pasokan ayam." />
             <div className="grid gap-5 min-[761px]:grid-cols-3">
               {services.map(({ name, label, description, icon: Icon }) => (
-                <article className="tile service-card" key={name}>
+                  <article className="tile service-card" data-reveal key={name}>
                   <div className="icon-box"><Icon size={23} strokeWidth={1.65} aria-hidden /></div>
                   <p className="category" lang="en">{label}</p>
                   <h3>{name}</h3>
