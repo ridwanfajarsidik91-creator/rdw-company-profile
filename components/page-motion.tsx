@@ -4,6 +4,8 @@ import { ArrowUp } from "lucide-react";
 import { motion, useScroll } from "motion/react";
 import { useEffect, useRef } from "react";
 
+const revealThreshold = 0.08;
+
 export function PageMotion() {
   const { scrollYProgress } = useScroll();
   const backToTop = useRef<HTMLAnchorElement>(null);
@@ -12,7 +14,7 @@ export function PageMotion() {
     const revealObserver = typeof IntersectionObserver === "undefined" ? null : new IntersectionObserver((entries) => {
       for (const entry of entries) {
         const element = entry.target;
-        if (entry.intersectionRatio >= 0.18) element.setAttribute("data-revealed", "");
+        if (entry.intersectionRatio >= revealThreshold) element.setAttribute("data-revealed", "");
         if (!entry.isIntersecting) {
           // A running entrance can briefly move a visible card beyond the viewport.
           const translate = getComputedStyle(element).translate.split(" ");
@@ -26,7 +28,7 @@ export function PageMotion() {
           }
         }
       }
-    }, { threshold: [0, 0.18] });
+    }, { threshold: [0, revealThreshold] });
     document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver?.observe(element));
 
     const header = document.querySelector(".site-header");
