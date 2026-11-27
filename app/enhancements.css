@@ -144,7 +144,7 @@
 .back-to-top:hover { border-color: var(--color-gold); }
 
 @keyframes rdw-section-enter {
-  from { opacity: .47; translate: var(--reveal-x, 0px) var(--reveal-y, 68px); }
+  from { opacity: .47; translate: var(--reveal-x, 0px) var(--reveal-y, 52px); }
   to { opacity: 1; translate: 0 0; }
 }
 
@@ -170,8 +170,8 @@
 
 @media (prefers-reduced-motion: no-preference) {
   :root {
-    --section-reveal-duration: 520ms;
-    --section-reveal-step: 75ms;
+    --section-reveal-duration: 800ms;
+    --section-reveal-step: 120ms;
   }
 
   main { overflow-x: clip; }
@@ -239,8 +239,8 @@
   .advantages-list li:nth-child(5) { --reveal-delay: calc(4 * var(--section-reveal-step)); }
 
   @media (min-width: 761px) {
-    .about .section-heading > :not(h2) { --reveal-x: -68px; --reveal-y: 0px; }
-    .advantages-list li { --reveal-x: 68px; --reveal-y: 0px; }
+    .about .section-heading > :not(h2) { --reveal-x: -52px; --reveal-y: 0px; }
+    .advantages-list li { --reveal-x: 52px; --reveal-y: 0px; }
   }
 }
 

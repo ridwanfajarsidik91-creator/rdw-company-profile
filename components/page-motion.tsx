@@ -4,7 +4,7 @@ import { ArrowUp } from "lucide-react";
 import { motion, useScroll } from "motion/react";
 import { useEffect, useRef } from "react";
 
-const revealThreshold = 0.08;
+const revealThreshold = 0.12;
 
 export function PageMotion() {
   const { scrollYProgress } = useScroll();
