@@ -240,7 +240,7 @@ a:focus-visible, button:focus-visible {
   margin-block: clamp(19px, 3vw, 31px) clamp(26px, 3.7vw, 43px);
 }
 
-.hero h1 span { color: var(--light-gold); }
+.hero-title-accent { color: var(--light-gold); }
 
 .action-link {
   width: fit-content;
@@ -385,11 +385,6 @@ a:focus-visible, button:focus-visible {
 
 .site-header[data-scrolled]::after { opacity: 1; }
 
-@keyframes rdw-enter {
-  from { opacity: .76; translate: 0 14px; }
-  to { opacity: 1; translate: 0 0; }
-}
-
 @keyframes rdw-menu-enter {
   from { opacity: .8; translate: 0 -4px; }
   to { opacity: 1; translate: 0 0; }
@@ -398,16 +393,7 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: no-preference) {
   :root {
     --rdw-motion-ease: cubic-bezier(.22, 1, .36, 1);
-    --rdw-motion-enter: 720ms;
-    --rdw-motion-step: 85ms;
   }
-
-  .hero-copy > * {
-    animation: rdw-enter var(--rdw-motion-enter) var(--rdw-motion-ease) var(--reveal-delay, 0ms) backwards;
-  }
-
-  .hero-copy > :nth-child(2) { --reveal-delay: var(--rdw-motion-step); }
-  .hero-copy > :nth-child(3) { --reveal-delay: calc(2 * var(--rdw-motion-step)); }
 
   .site-header::after { transition: opacity 240ms var(--rdw-motion-ease); }
 

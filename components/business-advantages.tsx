@@ -19,7 +19,7 @@ export function BusinessAdvantages() {
             <li key={title} data-reveal>
               <div className="icon-box"><Icon size={21} strokeWidth={1.65} aria-hidden="true" /></div>
               <div>
-                <h3>{title}</h3>
+                <h3><span className="headline-motion">{title}</span></h3>
                 <p>{description}</p>
               </div>
             </li>

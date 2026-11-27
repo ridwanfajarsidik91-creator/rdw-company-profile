@@ -33,7 +33,7 @@ export function CorporateFooter() {
           </div>
 
           <nav className="footer-navigation" aria-labelledby="footer-navigation-title" data-reveal>
-            <h3 id="footer-navigation-title">Navigasi</h3>
+            <h3 id="footer-navigation-title"><span className="headline-motion">Navigasi</span></h3>
             <ul role="list">
               {footerNavigation.map(({ href, label }) => (
                 <li key={href}><a href={href}>{label}</a></li>
@@ -42,7 +42,7 @@ export function CorporateFooter() {
           </nav>
 
           <div className="footer-contact" data-reveal>
-            <h3>Hubungi Kami</h3>
+            <h3><span className="headline-motion">Hubungi Kami</span></h3>
             <address>
               <div className="footer-contact-line">
                 <MapPin size={18} strokeWidth={1.7} aria-hidden="true" />

@@ -35,8 +35,8 @@ function useParallax(target: RefObject<HTMLElement | null>, offset: UseScrollOpt
 export function HeroParallax({ children }: { children: ReactNode }) {
   const target = useRef<HTMLElement>(null);
   const { progress, intensity } = useParallax(target, ["start 79px", "end 79px"]);
-  const y = useTransform(progress, [0, 1], [0, 116 * intensity]);
-  const scale = useTransform(progress, [0, 1], [1, 1 + 0.055 * intensity]);
+  const y = useTransform(progress, [0, 0.45, 1], [0, 91 * intensity, 156 * intensity]);
+  const scale = useTransform(progress, [0, 0.45, 1], [1, 1 + 0.09 * intensity, 1 + 0.155 * intensity]);
 
   return (
     <section ref={target} id="home" className="hero" aria-labelledby="hero-title">

@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowUp } from "lucide-react";
-import { inView } from "motion";
 import { motion, useScroll } from "motion/react";
 import { useEffect, useRef } from "react";
 
@@ -10,9 +9,25 @@ export function PageMotion() {
   const backToTop = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    const stopReveals = inView("[data-reveal]:not([data-revealed])", (element) => {
-      element.setAttribute("data-revealed", "");
-    }, { amount: 0.15 });
+    const revealObserver = typeof IntersectionObserver === "undefined" ? null : new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const element = entry.target;
+        if (entry.intersectionRatio >= 0.18) element.setAttribute("data-revealed", "");
+        if (!entry.isIntersecting) {
+          // A running entrance can briefly move a visible card beyond the viewport.
+          const translate = getComputedStyle(element).translate.split(" ");
+          const x = parseFloat(translate[0]) || 0;
+          const y = parseFloat(translate[1]) || 0;
+          const bounds = entry.boundingClientRect;
+          const viewport = entry.rootBounds;
+          if (viewport && (bounds.bottom - y <= viewport.top || bounds.top - y >= viewport.bottom ||
+              bounds.right - x <= viewport.left || bounds.left - x >= viewport.right)) {
+            element.removeAttribute("data-revealed");
+          }
+        }
+      }
+    }, { threshold: [0, 0.18] });
+    document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver?.observe(element));
 
     const header = document.querySelector(".site-header");
     const control = backToTop.current;
@@ -63,7 +78,7 @@ export function PageMotion() {
     window.addEventListener("resize", updateScrollState);
 
     return () => {
-      stopReveals();
+      revealObserver?.disconnect();
       window.cancelAnimationFrame(scrollFrame);
       window.removeEventListener("click", handleAnchor);
       window.removeEventListener("hashchange", openFragment);

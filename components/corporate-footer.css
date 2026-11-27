@@ -111,7 +111,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .footer-columns > [data-revealed], .footer-bottom[data-revealed] {
-    animation: rdw-footer-enter var(--rdw-motion-enter) var(--rdw-motion-ease) var(--footer-delay, 0ms) backwards;
+    animation: rdw-footer-enter 1s var(--rdw-motion-ease) var(--footer-delay, 0ms) backwards;
   }
 
   .footer-navigation { --footer-delay: var(--section-reveal-step); }

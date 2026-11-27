@@ -39,9 +39,9 @@ export default function HomePage() {
       <Header />
       <main id="isi" tabIndex={-1}>
         <HeroParallax>
-          <div className="hero-copy">
+          <div className="hero-copy" data-reveal>
             <p className="eyebrow"><span>Supplier &amp; Distributor <span aria-hidden>·</span> Bandung Barat</span></p>
-            <h1 id="hero-title">Mitra Pasokan Ayam.<br /><span>Solusi Distribusi.</span></h1>
+            <h1 id="hero-title"><span className="headline-motion">Mitra Pasokan Ayam.<br /><span className="hero-title-accent">Solusi Distribusi.</span></span></h1>
             <ActionLink href="#kontak">Hubungi tim sales</ActionLink>
           </div>
         </HeroParallax>
@@ -60,7 +60,7 @@ export default function HomePage() {
                     parallax
                   />
                   <div className="product-body">
-                    <h3>{product.name}</h3>
+                    <h3><span className="headline-motion">{product.name}</span></h3>
                     <p>{product.description}</p>
                     <ActionLink
                       href="#kontak"
@@ -90,7 +90,7 @@ export default function HomePage() {
                   />
                   <div className="tile-body">
                     <p className="category" lang="en">{customer.category}</p>
-                    <h3>{customer.name}</h3>
+                    <h3><span className="headline-motion">{customer.name}</span></h3>
                     <p>{customer.description}</p>
                   </div>
                 </article>
@@ -122,7 +122,7 @@ export default function HomePage() {
                   <article className="tile service-card" data-reveal key={name}>
                   <div className="icon-box"><Icon size={23} strokeWidth={1.65} aria-hidden /></div>
                   <p className="category" lang="en">{label}</p>
-                  <h3>{name}</h3>
+                  <h3><span className="headline-motion">{name}</span></h3>
                   <p>{description}</p>
                 </article>
               ))}
