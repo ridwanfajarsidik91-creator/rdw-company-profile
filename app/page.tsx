@@ -38,24 +38,10 @@ export default function HomePage() {
       <a href="#isi" className="skip-link">Lewati ke konten</a>
       <Header />
       <main id="isi" tabIndex={-1}>
-        <HeroParallax
-          photo={
-            <Photo
-              className="hero-photo"
-              src={products[0].photo}
-              alt={products[0].alt}
-              caption="Ayam Gebrus / Foto ilustrasi"
-              sizes="(max-width: 760px) 90vw, (max-width: 1333px) 42vw, 550px"
-              priority
-            />
-          }
-        >
+        <HeroParallax>
           <div className="hero-copy">
             <p className="eyebrow"><span>Supplier &amp; Distributor <span aria-hidden>·</span> Bandung Barat</span></p>
             <h1 id="hero-title">Mitra Pasokan Ayam.<br /><span>Solusi Distribusi.</span></h1>
-            <p className="hero-description">
-              RDW menyediakan ayam hidup dan ayam gebrus untuk kebutuhan pasar tradisional, rumah potong ayam, serta industri pengolahan ayam.
-            </p>
             <ActionLink href="#kontak">Hubungi tim sales</ActionLink>
           </div>
         </HeroParallax>

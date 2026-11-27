@@ -1,6 +1,8 @@
 "use client";
 
+import { ArrowDown } from "lucide-react";
 import { motion, useScroll, useSpring, useTransform, type UseScrollOptions } from "motion/react";
+import Image from "next/image";
 import { useRef, useSyncExternalStore, type ReactNode, type RefObject } from "react";
 
 const mobileQuery = "(max-width: 760px)";
@@ -30,22 +32,29 @@ function useParallax(target: RefObject<HTMLElement | null>, offset: UseScrollOpt
   return { progress, intensity };
 }
 
-export function HeroParallax({ children, photo }: { children: ReactNode; photo: ReactNode }) {
+export function HeroParallax({ children }: { children: ReactNode }) {
   const target = useRef<HTMLElement>(null);
   const { progress, intensity } = useParallax(target, ["start 79px", "end 79px"]);
-  // On mobile the photo starts below the CTA. Keep the early movement within their gap.
-  const foregroundY = useTransform(progress, [0, 0.28, 0.62, 1], intensity === 0.5
-    ? [0, -20, -25, -42]
-    : [0, -37.8 * intensity, -65 * intensity, -84 * intensity]);
-  const backgroundY = useTransform(progress, [0, 1], [0, 24 * intensity]);
+  const y = useTransform(progress, [0, 1], [0, 116 * intensity]);
+  const scale = useTransform(progress, [0, 1], [1, 1 + 0.055 * intensity]);
 
   return (
     <section ref={target} id="home" className="hero" aria-labelledby="hero-title">
-      <motion.div className="hero-parallax-background" aria-hidden style={{ y: backgroundY }} />
-      <div className="container-shell hero-grid">
-        {children}
-        <motion.div className="hero-parallax-foreground" style={{ y: foregroundY }}>{photo}</motion.div>
-      </div>
+      <motion.div className="hero-parallax-background" aria-hidden="true" style={{ y, scale }}>
+        <Image
+          src="/images/hero-ayam-rdw.webp"
+          alt=""
+          fill
+          sizes="(max-width: 760px) 120svh, 100vw"
+          loading="eager"
+          fetchPriority="high"
+        />
+      </motion.div>
+      <div className="hero-overlay" aria-hidden="true" />
+      <div className="container-shell hero-content">{children}</div>
+      <a className="hero-scroll-cue" href="#produk" aria-label="Lihat produk">
+        <ArrowDown size={20} strokeWidth={1.6} aria-hidden="true" />
+      </a>
     </section>
   );
 }

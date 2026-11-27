@@ -155,27 +155,48 @@ a:focus-visible, button:focus-visible {
 .menu-toggle:hover { background: var(--color-mist); }
 
 .hero {
-  --hero-background: linear-gradient(115deg, var(--color-navy) 0%, #102d61 100%);
   position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 88vh;
+  min-height: 88svh;
+  padding-block: clamp(66px, 11svh, 104px);
   overflow: clip;
-  background: var(--hero-background);
+  background: var(--color-navy);
   color: white;
-  padding-block: clamp(54px, 6vw, 86px);
+  text-align: center;
 }
 
 .hero-parallax-background {
   position: absolute;
-  inset: -26px 0 0;
+  inset: -124px 0;
   pointer-events: none;
-  background: var(--hero-background);
 }
 
-.hero-grid {
-  position: relative;
+.hero-parallax-background img {
+  object-fit: cover;
+  object-position: center 52%;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgb(7 28 80 / 80%);
+  pointer-events: none;
+}
+
+.hero-content { position: relative; }
+
+.hero-scroll-cue {
+  position: absolute;
+  inset-inline: 0;
+  bottom: clamp(15px, 3.7svh, 36px);
+  margin-inline: auto;
+  width: 44px;
+  height: 44px;
   display: grid;
-  align-items: center;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: clamp(24px, 3.6vw, 54px);
+  place-items: center;
+  color: var(--light-gold);
 }
 
 .eyebrow, .category {
@@ -201,19 +222,25 @@ a:focus-visible, button:focus-visible {
   background: var(--color-gold);
 }
 
-.hero .eyebrow { color: var(--light-gold); }
+.hero .eyebrow {
+  display: block;
+  color: var(--light-gold);
+  font-size: clamp(.62rem, 1.7vw, .8rem);
+  letter-spacing: .2em;
+}
+
+.hero .eyebrow::before { content: none; }
 
 .hero h1 {
   color: white;
-  font-size: clamp(2.35rem, 4.5vw, 4.25rem);
+  font-size: clamp(1.55rem, 8.65vw, 5.5rem);
   font-weight: 780;
   letter-spacing: -.055em;
   line-height: 1.04;
-  margin-block: 22px;
+  margin-block: clamp(19px, 3vw, 31px) clamp(26px, 3.7vw, 43px);
 }
 
 .hero h1 span { color: var(--light-gold); }
-.hero-description { color: #d5dfef; font-size: clamp(1rem, 1.4vw, 1.125rem); max-width: 505px; margin-bottom: 28px; }
 
 .action-link {
   width: fit-content;
@@ -245,22 +272,6 @@ a:focus-visible, button:focus-visible {
   background: #edf1f6;
   color: var(--muted);
   font-size: .685rem;
-}
-.hero-photo {
-  overflow: hidden;
-  border: 1px solid #ffffff48;
-  border-radius: 12px;
-  box-shadow: 0 18px 45px #020b2459;
-}
-.hero-photo .photo-image { background: #fafaf8; aspect-ratio: 1.38; }
-.hero-photo img { object-fit: contain; }
-.hero-photo figcaption {
-  color: var(--color-navy);
-  padding: 13px 17px;
-  font-size: .69rem;
-  font-weight: 750;
-  letter-spacing: .11em;
-  text-transform: uppercase;
 }
 .product-photo .photo-image {
   aspect-ratio: 1.82;
@@ -353,20 +364,13 @@ a:focus-visible, button:focus-visible {
     margin-top: 8px;
   }
   html { scroll-padding-top: 78px; }
-  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
-  .hero h1 { font-size: clamp(2.15rem, 8.4vw, 3.6rem); }
-  .hero-photo .photo-image { aspect-ratio: 1.65; }
-  .hero-parallax-background { inset-block-start: -14px; }
+  .hero-parallax-background { inset-block: -64px; }
   .product-parallax-plane { inset-block: -12px; }
   .partnership-inner { flex-direction: column; align-items: flex-start; }
 }
 
 @media (max-width: 540px) {
-  .hero { padding-block: 44px; }
-  .hero .eyebrow { font-size: .62rem; letter-spacing: .10em; gap: 6px; }
-  .hero .eyebrow::before { flex-basis: 14px; }
-  .hero h1 { margin-block: 16px; }
-  .hero-description { margin-bottom: 22px; }
+  .hero .eyebrow { letter-spacing: .13em; }
   .section-heading { margin-bottom: 24px; }
 }
 
@@ -386,11 +390,6 @@ a:focus-visible, button:focus-visible {
   to { opacity: 1; translate: 0 0; }
 }
 
-@keyframes rdw-photo-enter {
-  from { translate: 0 10px; }
-  to { translate: 0 0; }
-}
-
 @keyframes rdw-menu-enter {
   from { opacity: .8; translate: 0 -4px; }
   to { opacity: 1; translate: 0 0; }
@@ -404,7 +403,6 @@ a:focus-visible, button:focus-visible {
   }
 
   .hero-copy > *,
-  .hero-photo,
   .product-card[data-revealed],
   [data-revealed] > .section-heading > *,
   .partnership-inner[data-revealed] > .action-link {
@@ -412,7 +410,6 @@ a:focus-visible, button:focus-visible {
   }
 
   .hero-copy > :nth-child(2),
-  .hero-photo,
   .product-card:nth-child(2),
   [data-revealed] > .section-heading > :nth-child(2) {
     --reveal-delay: var(--rdw-motion-step);
@@ -423,12 +420,9 @@ a:focus-visible, button:focus-visible {
     --reveal-delay: calc(2 * var(--rdw-motion-step));
   }
 
-  .hero-copy > :nth-child(4),
   .partnership-inner > .action-link {
     --reveal-delay: calc(3 * var(--rdw-motion-step));
   }
-
-  .hero-photo { animation-name: rdw-photo-enter; }
 
   .site-header::after { transition: opacity 240ms var(--rdw-motion-ease); }
 
@@ -454,7 +448,8 @@ a:focus-visible, button:focus-visible {
     transition: background-color 240ms var(--rdw-motion-ease);
   }
 
-  .action-link svg { transition: translate 240ms var(--rdw-motion-ease); }
+  .action-link svg, .hero-scroll-cue svg { transition: translate 240ms var(--rdw-motion-ease); }
+  .hero-scroll-cue:is(:hover, :focus-visible) svg { translate: 0 3px; }
 
   .action-link:is(:hover, :focus-visible) svg { translate: 3px 0; }
 
@@ -471,8 +466,8 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .action-link { transition: none; }
-  .hero-parallax-background { display: none; }
-  .hero-parallax-foreground, .product-parallax-plane, .about-parallax-copy,
+  .hero-parallax-background { inset: 0; transform: none !important; }
+  .product-parallax-plane, .about-parallax-copy,
   .about-parallax-copy .eyebrow::before { transform: none !important; }
   .product-parallax-plane { inset-block: 0; }
 }
